@@ -270,14 +270,19 @@
         <!-- Interest Calculator -->
         <section id="interest-calculator">
             <h2><i class="fas fa-percentage"></i> Interest Calculator</h2>
-            <label for="principal">Principal Amount:</label>
+            <label for="principal">Principal Amount (₹):</label>
             <input type="number" id="principal" placeholder="Enter principal amount">
-            <label for="rate">Interest Rate (%):</label>
-            <input type="number" id="rate" placeholder="Enter interest rate">
-            <label for="time">Time (years):</label>
-            <input type="number" id="time" placeholder="Enter time in years">
+            <label for="rate">Rate of Interest (%):</label>
+            <input type="number" id="rate" placeholder="Enter rate of interest">
+            <label for="time-years">Time (Years):</label>
+            <input type="number" id="time-years" placeholder="Enter years">
+            <label for="time-months">Time (Months):</label>
+            <input type="number" id="time-months" placeholder="Enter months">
+            <label for="time-days">Time (Days):</label>
+            <input type="number" id="time-days" placeholder="Enter days">
             <button id="calculate-interest">Calculate Interest</button>
             <p class="result" id="interest-result"></p>
+            <p class="result" id="total-amount-result"></p>
         </section>
 
         <!-- AdSense Ad Unit -->
@@ -418,18 +423,28 @@
             const loanAmount = parseFloat(document.getElementById('loan-amount').value);
             const interestRate = parseFloat(document.getElementById('interest-rate').value);
             const loanTenure = parseFloat(document.getElementById('loan-tenure').value);
-            const monthlyInterestRate = (interestRate / 100) / 12;
+            const monthlyInterestRate = (interestRate / 100) / 1;
             const emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTenure)) / (Math.pow(1 + monthlyInterestRate, loanTenure) - 1);
             document.getElementById('emi-result').innerText = `EMI: ₹${emi.toFixed(2)}`;
         });
 
-        // Interest Calculator
+        // Interest Calculator (Years, Months, Days)
         document.getElementById('calculate-interest').addEventListener('click', function () {
             const principal = parseFloat(document.getElementById('principal').value);
             const rate = parseFloat(document.getElementById('rate').value);
-            const time = parseFloat(document.getElementById('time').value);
-            const interest = (principal * rate * time) / 100;
-            document.getElementById('interest-result').innerText = `Interest: ₹${interest.toFixed(2)}`;
+            const years = parseFloat(document.getElementById('time-years').value) || 0;
+            const months = parseFloat(document.getElementById('time-months').value) || 0;
+            const days = parseFloat(document.getElementById('time-days').value) || 0;
+
+            // Convert time to years
+            const totalYears = years + (months / 12) + (days / 365);
+
+            // Calculate interest and total amount
+            const interest = (principal * rate * totalYears) / 100;
+            const totalAmount = principal + interest;
+
+            document.getElementById('interest-result').innerText = `Total Interest: ₹${interest.toFixed(2)}`;
+            document.getElementById('total-amount-result').innerText = `Total Amount: ₹${totalAmount.toFixed(2)}`;
         });
     </script>
 </body>
