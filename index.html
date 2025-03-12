@@ -274,12 +274,12 @@
             <input type="number" id="principal" placeholder="Enter principal amount">
             <label for="rate">Rate of Interest:</label>
             <input type="number" id="rate" placeholder="Enter rate of interest">
-            <label for="time-years">Time (Years):</label>
-            <input type="number" id="time-years" placeholder="Enter years">
-            <label for="time-months">Time (Months):</label>
-            <input type="number" id="time-months" placeholder="Enter months">
-            <label for="time-days">Time (Days):</label>
-            <input type="number" id="time-days" placeholder="Enter days">
+            <label for="Years"> (Years):</label>
+            <input type="number" id="years" placeholder="Enter years">
+            <label for="Months"> (Months):</label>
+            <input type="number" id="Months" placeholder="Enter months">
+            <label for="Days"> (Days):</label>
+            <input type="number" id="Days" placeholder="Enter days">
             <button id="calculate-interest">Calculate Interest</button>
             <p class="result" id="interest-result"></p>
             <p class="result" id="total-amount-result"></p>
@@ -432,15 +432,15 @@
         document.getElementById('calculate-interest').addEventListener('click', function () {
             const principal = parseFloat(document.getElementById('principal').value);
             const rate = parseFloat(document.getElementById('rate').value);
-            const years = parseFloat(document.getElementById('time-years').value) || 0;
-            const months = parseFloat(document.getElementById('time-months').value) || 0;
-            const days = parseFloat(document.getElementById('time-days').value) || 0;
+            const years = parseFloat(document.getElementById('years').value) || 0;
+            const months = parseFloat(document.getElementById('months').value) || 0;
+            const days = parseFloat(document.getElementById('days').value) || 0;
 
             // Convert time to years
             const totalYears = years + (months / 12) + (days / 365);
 
             // Calculate interest and total amount
-            const interest = (principal * rate * totalYears) / 100;
+            const interest = (principal * rate * totalYears) / 1;
             const totalAmount = principal + interest;
 
             document.getElementById('interest-result').innerText = `Total Interest: ₹${interest.toFixed(2)}`;
