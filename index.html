@@ -231,6 +231,7 @@
             </select>
             <button id="compress-btn">Compress Image</button>
             <div id="compressed-image-container"></div>
+            <button id="download-btn" style="display: none;">Download Compressed Image</button>
         </section>
 
         <!-- Age Calculator -->
@@ -318,8 +319,10 @@
             }
         });
 
-        // JavaScript Functionality
-        // Image Compression
+        // Image Compression and Download
+        const downloadBtn = document.getElementById('download-btn');
+        let compressedImageUrl = null;
+
         document.getElementById('compress-btn').addEventListener('click', function () {
             const file = document.getElementById('image-input').files[0];
             const compressionLevel = parseFloat(document.getElementById('compression-level').value);
@@ -337,14 +340,26 @@
                         canvas.height = img.height * compressionLevel;
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-                        const compressedImage = canvas.toDataURL('image/jpeg', compressionLevel);
+                        compressedImageUrl = canvas.toDataURL('image/jpeg', compressionLevel);
                         const compressedImgElement = document.createElement('img');
-                        compressedImgElement.src = compressedImage;
+                        compressedImgElement.src = compressedImageUrl;
                         document.getElementById('compressed-image-container').innerHTML = '';
                         document.getElementById('compressed-image-container').appendChild(compressedImgElement);
+
+                        // Show download button
+                        downloadBtn.style.display = 'block';
                     };
                 };
                 reader.readAsDataURL(file);
+            }
+        });
+
+        downloadBtn.addEventListener('click', function () {
+            if (compressedImageUrl) {
+                const link = document.createElement('a');
+                link.href = compressedImageUrl;
+                link.download = 'compressed-image.jpg';
+                link.click();
             }
         });
 
