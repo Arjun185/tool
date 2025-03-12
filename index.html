@@ -3,34 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore a wide range of free online tools for image and PDF processing. Compress, convert, edit, and optimize your files with ease.">
-    <meta name="keywords" content="image tools, PDF tools, online tools, compress images, edit PDF, free tools">
+    <meta name="description" content="A multi-functional web tool for image compression, age calculation, date difference, EMI, and interest calculation.">
+    <meta name="keywords" content="image compression, age calculator, date calculator, EMI calculator, interest calculator">
     <meta name="author" content="Your Name">
-    <title>Online Tools - Image & PDF Tools</title>
+    <title>Multi-Functional Web Tool</title>
     <style>
-        /* General Styles */
+        /* CSS Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
             color: #333;
-            line-height: 1.6;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
         header {
-            background-color: #4a90e2;
-            color: #fff;
-            padding: 40px 0;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 2rem;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
@@ -38,175 +30,272 @@
             font-size: 2.5rem;
         }
 
-        header p {
-            margin: 10px 0 0;
-            font-size: 1.2rem;
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* Navigation */
-        nav {
-            background-color: #333;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #4a90e2;
-        }
-
-        /* Tools Section */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .tool-card {
-            background-color: #fff;
-            padding: 20px;
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .tool-card:hover {
+        section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .tool-card img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 15px;
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
         }
 
-        .tool-card h3 {
-            margin: 0;
-            font-size: 1.3rem;
-            color: #4a90e2;
-        }
-
-        .tool-card p {
-            font-size: 0.95rem;
-            color: #666;
-            margin: 10px 0;
-        }
-
-        .tool-card a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4a90e2;
-            color: #fff;
+        input, select, button {
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            width: 100%;
+            max-width: 400px;
+            display: block;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .tool-card a:hover {
-            background-color: #357abd;
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
 
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: #fff;
+        button {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+        }
+
+        .ads {
+            margin: 2rem 0;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
         footer p {
             margin: 0;
-            font-size: 0.9rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
+        #compressed-image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
 
-            header p {
-                font-size: 1rem;
-            }
-
-            nav a {
-                font-size: 1rem;
-                margin: 0 10px;
-            }
-
-            .tool-card {
-                padding: 15px;
-            }
-
-            .tool-card h3 {
-                font-size: 1.2rem;
-            }
-
-            .tool-card p {
-                font-size: 0.9rem;
-            }
+        .result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 1rem;
         }
     </style>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <div class="container">
-            <h1>Online Tools</h1>
-            <p>Your one-stop solution for image and PDF processing.</p>
-        </div>
+        <h1>Multi-Functional Web Tool</h1>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="/tool/img-compress">Home</a>
-            <a href="/tool/img-compress">Image Tools</a>
-            <a href="/tool/img-compress">PDF Tools</a>
-            <a href="/tool/img-compress">About</a>
-            <a href="/tool/img-compress">Contact</a>
-        </div>
-    </nav>
+    <main>
+        <!-- Image Compression Tool -->
+        <section id="image-compression">
+            <h2>Image Compression Tool</h2>
+            <input type="file" id="image-input" accept="image/*">
+            <label for="compression-level">Compression Level:</label>
+            <select id="compression-level">
+                <option value="0.1">Low</option>
+                <option value="0.5">Medium</option>
+                <option value="0.9">High</option>
+            </select>
+            <button id="compress-btn">Compress Image</button>
+            <div id="compressed-image-container"></div>
+        </section>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Tools Grid -->
-        <section class="tools-grid">
-            <!-- Image Tools -->
-            <div class="tool-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/3767/3767084.png" alt="Image Compressor Icon">
-                <h3>Image Compressor</h3>
-                <p>Compress and optimize your images for the web.</p>
-                <a href="/tool/img-compress">Use Tool</a>
+        <!-- Age Calculator -->
+        <section id="age-calculator">
+            <h2>Age Calculator</h2>
+            <label for="birthdate">Enter your birthdate:</label>
+            <input type="date" id="birthdate">
+            <button id="calculate-age">Calculate Age</button>
+            <p class="result" id="age-result"></p>
+        </section>
+
+        <!-- Date Difference Calculator -->
+        <section id="date-difference">
+            <h2>Date Difference Calculator</h2>
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date">
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date">
+            <button id="calculate-difference">Calculate Difference</button>
+            <p class="result" id="difference-result"></p>
+        </section>
+
+        <!-- EMI Calculator -->
+        <section id="emi-calculator">
+            <h2>EMI Calculator</h2>
+            <label for="loan-amount">Loan Amount:</label>
+            <input type="number" id="loan-amount" placeholder="Enter loan amount">
+            <label for="interest-rate">Interest Rate (%):</label>
+            <input type="number" id="interest-rate" placeholder="Enter interest rate">
+            <label for="loan-tenure">Loan Tenure (months):</label>
+            <input type="number" id="loan-tenure" placeholder="Enter loan tenure">
+            <button id="calculate-emi">Calculate EMI</button>
+            <p class="result" id="emi-result"></p>
+        </section>
+
+        <!-- Interest Calculator -->
+        <section id="interest-calculator">
+            <h2>Interest Calculator</h2>
+            <label for="principal">Principal Amount:</label>
+            <input type="number" id="principal" placeholder="Enter principal amount">
+            <label for="rate">Interest Rate (%):</label>
+            <input type="number" id="rate" placeholder="Enter interest rate">
+            <label for="time">Time (years):</label>
+            <input type="number" id="time" placeholder="Enter time in years">
+            <button id="calculate-interest">Calculate Interest</button>
+            <p class="result" id="interest-result"></p>
+        </section>
+
+        <!-- AdSense Ad Unit -->
+        <section id="advertisement">
+            <h2>Advertisement</h2>
+            <div class="ads">
+                <!-- Paste your Google AdSense ad unit code here -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_AD_SENSE_ID"
+                     data-ad-slot="YOUR_AD_SLOT_ID"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
-
-            <div class="tool-card">
-    <img src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png" alt="Image Converter Icon">
-    <h3>Image Converter</h3>
-    <p>Convert images to different formats like JPG, PNG, and more.</p>
-    <a href="/tool/img-compress">Use Tool</a>
-</div>
-
-
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Online Tools. All rights reserved.</p>
-        </div>
+        <p>&copy; 2023 Your Company. All rights reserved.</p>
     </footer>
+
+    <script>
+        // JavaScript Functionality (Same as before)
+        // Image Compression
+        document.getElementById('compress-btn').addEventListener('click', function () {
+            const file = document.getElementById('image-input').files[0];
+            const compressionLevel = parseFloat(document.getElementById('compression-level').value);
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+
+                    img.onload = function () {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = img.width * compressionLevel;
+                        canvas.height = img.height * compressionLevel;
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                        const compressedImage = canvas.toDataURL('image/jpeg', compressionLevel);
+                        const compressedImgElement = document.createElement('img');
+                        compressedImgElement.src = compressedImage;
+                        document.getElementById('compressed-image-container').innerHTML = '';
+                        document.getElementById('compressed-image-container').appendChild(compressedImgElement);
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Age Calculator (Years, Months, Days)
+        document.getElementById('calculate-age').addEventListener('click', function () {
+            const birthdate = new Date(document.getElementById('birthdate').value);
+            const today = new Date();
+
+            let years = today.getFullYear() - birthdate.getFullYear();
+            let months = today.getMonth() - birthdate.getMonth();
+            let days = today.getDate() - birthdate.getDate();
+
+            // Adjust months and years if necessary
+            if (months < 0 || (months === 0 && days < 0)) {
+                years--;
+                months += 12;
+            }
+
+            // Adjust days if necessary
+            if (days < 0) {
+                const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                days += lastMonth.getDate();
+                months--;
+            }
+
+            document.getElementById('age-result').innerText = `Your age is ${years} years, ${months} months, and ${days} days.`;
+        });
+
+        // Date Difference Calculator
+        document.getElementById('calculate-difference').addEventListener('click', function () {
+            const startDate = new Date(document.getElementById('start-date').value);
+            const endDate = new Date(document.getElementById('end-date').value);
+            const differenceInTime = endDate.getTime() - startDate.getTime();
+            const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
+            document.getElementById('difference-result').innerText = `Difference: ${differenceInDays} days.`;
+        });
+
+        // EMI Calculator
+        document.getElementById('calculate-emi').addEventListener('click', function () {
+            const loanAmount = parseFloat(document.getElementById('loan-amount').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate').value);
+            const loanTenure = parseFloat(document.getElementById('loan-tenure').value);
+            const monthlyInterestRate = (interestRate / 100) / 12;
+            const emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTenure)) / (Math.pow(1 + monthlyInterestRate, loanTenure) - 1);
+            document.getElementById('emi-result').innerText = `EMI: ₹${emi.toFixed(2)}`;
+        });
+
+        // Interest Calculator
+        document.getElementById('calculate-interest').addEventListener('click', function () {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            const time = parseFloat(document.getElementById('time').value);
+            const interest = (principal * rate * time) / 100;
+            document.getElementById('interest-result').innerText = `Interest: ₹${interest.toFixed(2)}`;
+        });
+    </script>
 </body>
 </html>
