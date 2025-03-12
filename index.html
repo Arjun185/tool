@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A multi-functional web tool for image compression, age calculation, date difference, EMI, and interest calculation.">
-    <meta name="keywords" content="image compression, age calculator, date calculator, EMI calculator, interest calculator">
+    <meta name="description" content="A multi-functional web tool for image compression, age calculation, interest calculation, and EMI calculation.">
+    <meta name="keywords" content="image compression, age calculator, interest calculator, EMI calculator">
     <meta name="author" content="Your Name">
     <title>Multi-Functional Web Tool</title>
     <!-- Google Fonts -->
@@ -243,46 +243,35 @@
             <p class="result" id="age-result"></p>
         </section>
 
-        <!-- Date Difference Calculator -->
-        <section id="date-difference">
-            <h2><i class="fas fa-calendar-alt"></i> Date Difference Calculator</h2>
-            <label for="start-date">Start Date:</label>
-            <input type="date" id="start-date">
-            <label for="end-date">End Date:</label>
-            <input type="date" id="end-date">
-            <button id="calculate-difference">Calculate Difference</button>
-            <p class="result" id="difference-result"></p>
+        <!-- Interest Calculator -->
+        <section id="interest-calculator">
+            <h2><i class="fas fa-percentage"></i> Interest Calculator</h2>
+            <label for="principal">Principal Amount:</label>
+            <input type="number" id="principal" placeholder="Enter principal amount">
+            <label for="rate">Interest Rate (%):</label>
+            <input type="number" id="rate" placeholder="Enter interest rate">
+            <label for="time-years">Time (years):</label>
+            <input type="number" id="time-years" placeholder="Years">
+            <label for="time-months">Time (months):</label>
+            <input type="number" id="time-months" placeholder="Months">
+            <label for="time-days">Time (days):</label>
+            <input type="number" id="time-days" placeholder="Days">
+            <button id="calculate-interest">Calculate Interest</button>
+            <p class="result" id="interest-amount"></p>
+            <p class="result" id="total-amount"></p>
         </section>
 
         <!-- EMI Calculator -->
         <section id="emi-calculator">
             <h2><i class="fas fa-calculator"></i> EMI Calculator</h2>
-            <label for="loan-amount">Loan Amount (₹):</label>
+            <label for="loan-amount">Loan Amount:</label>
             <input type="number" id="loan-amount" placeholder="Enter loan amount">
-            <label for="interest-rate">Interest Rate:</label>
+            <label for="interest-rate">Interest Rate (%):</label>
             <input type="number" id="interest-rate" placeholder="Enter interest rate">
             <label for="loan-tenure">Loan Tenure (months):</label>
             <input type="number" id="loan-tenure" placeholder="Enter loan tenure">
             <button id="calculate-emi">Calculate EMI</button>
             <p class="result" id="emi-result"></p>
-        </section>
-
-        <!-- Interest Calculator -->
-        <section id="interest-calculator">
-            <h2><i class="fas fa-percentage"></i> Interest Calculator</h2>
-            <label for="principal">Principal Amount (₹):</label>
-            <input type="number" id="principal" placeholder="Enter principal amount">
-            <label for="rate">Rate of Interest:</label>
-            <input type="number" id="rate" placeholder="Enter rate of interest">
-            <label for="Years"> (Years):</label>
-            <input type="number" id="years" placeholder="Enter years">
-            <label for="Months"> (Months):</label>
-            <input type="number" id="Months" placeholder="Enter months">
-            <label for="Days"> (Days):</label>
-            <input type="number" id="Days" placeholder="Enter days">
-            <button id="calculate-interest">Calculate Interest</button>
-            <p class="result" id="interest-result"></p>
-            <p class="result" id="total-amount-result"></p>
         </section>
 
         <!-- AdSense Ad Unit -->
@@ -393,29 +382,27 @@
             document.getElementById('age-result').innerText = `Your age is ${years} years, ${months} months, and ${days} days.`;
         });
 
-        // Date Difference Calculator (Years, Months, Days)
-        document.getElementById('calculate-difference').addEventListener('click', function () {
-            const startDate = new Date(document.getElementById('start-date').value);
-            const endDate = new Date(document.getElementById('end-date').value);
+        // Interest Calculator
+        document.getElementById('calculate-interest').addEventListener('click', function () {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            const years = parseFloat(document.getElementById('time-years').value) || 0;
+            const months = parseFloat(document.getElementById('time-months').value) || 0;
+            const days = parseFloat(document.getElementById('time-days').value) || 0;
 
-            let years = endDate.getFullYear() - startDate.getFullYear();
-            let months = endDate.getMonth() - startDate.getMonth();
-            let days = endDate.getDate() - startDate.getDate();
+            // Convert time to years
+            const totalYears = years + (months / 12) + (days / 365);
 
-            // Adjust months and years if necessary
-            if (months < 0 || (months === 0 && days < 0)) {
-                years--;
-                months += 12;
+            if (principal > 0 && rate > 0 && totalYears > 0) {
+                const interest = (principal * rate * totalYears) / 100;
+                const totalAmount = principal + interest;
+
+                document.getElementById('interest-amount').innerText = `Interest Amount: ₹${interest.toFixed(2)}`;
+                document.getElementById('total-amount').innerText = `Total Amount: ₹${totalAmount.toFixed(2)}`;
+            } else {
+                document.getElementById('interest-amount').innerText = 'Please enter valid values.';
+                document.getElementById('total-amount').innerText = '';
             }
-
-            // Adjust days if necessary
-            if (days < 0) {
-                const lastMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
-                days += lastMonth.getDate();
-                months--;
-            }
-
-            document.getElementById('difference-result').innerText = `Difference: ${years} years, ${months} months, and ${days} days.`;
         });
 
         // EMI Calculator
@@ -426,25 +413,6 @@
             const monthlyInterestRate = (interestRate / 100) / 12;
             const emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTenure)) / (Math.pow(1 + monthlyInterestRate, loanTenure) - 1);
             document.getElementById('emi-result').innerText = `EMI: ₹${emi.toFixed(2)}`;
-        });
-
-        // Interest Calculator (Years, Months, Days)
-        document.getElementById('calculate-interest').addEventListener('click', function () {
-            const principal = parseFloat(document.getElementById('principal').value);
-            const rate = parseFloat(document.getElementById('rate').value);
-            const years = parseFloat(document.getElementById('years').value) || 0;
-            const months = parseFloat(document.getElementById('months').value) || 0;
-            const days = parseFloat(document.getElementById('days').value) || 0;
-
-            // Convert time to years
-            const totalYears = years + (months / 12) + (days / 365);
-
-            // Calculate interest and total amount
-            const interest = (principal * rate * totalYears) / 1;
-            const totalAmount = principal + interest;
-
-            document.getElementById('interest-result').innerText = `Total Interest: ₹${interest.toFixed(2)}`;
-            document.getElementById('total-amount-result').innerText = `Total Amount: ₹${totalAmount.toFixed(2)}`;
         });
     </script>
 </body>
